@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>archive-nptel-in | Course Certificate</title>
+  <style>
+    :root {
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top, #f6fbff 0, #ffffff 55%);
+      color: #12233c;
+    }
+
+    .wrapper {
+      width: min(420px, 90vw);
+      margin: 0 auto;
+      padding-top: 15vh;
+      text-align: center;
+    }
+
+    .brand {
+      font-size: 0.95rem;
+      letter-spacing: 0.35rem;
+      text-transform: uppercase;
+      color: #1f4a96;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      margin: 0 auto 1.5rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #0d2960;
+    }
+
+    p {
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      line-height: 1.55rem;
+      color: #3a4f70;
+    }
+
+    .button-link {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 220px;
+      min-height: 48px;
+      padding: 0 1.5rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.02rem;
+      text-decoration: none;
+      background-color: #3070bf;
+      color: #ffffff;
+      transition: background-color 0.25s ease, transform 0.2s ease;
+    }
+
+    .button-link:hover {
+      background-color: #255aa0;
+      transform: translateY(-1px);
+    }
+
+    .button-link:focus-visible {
+      outline: 3px solid #93c4ff;
+      outline-offset: 3px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.25rem;
+      border-radius: 16px;
+      background: #f0f7ff;
+      color: #24508a;
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .status-warning {
+      background: #fff5e5;
+      color: #8a5a0a;
+    }
+
+    .status-success {
+      background: #e7f7ee;
+      color: #116430;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrapper">
+    <div class="brand">archive-nptel-in</div>
+    <h1>Course Certificate</h1>
+    <p id="message">
+      Provide a valid certificate ID query parameter to verify a course certificate.
+    </p>
+
+    <div id="statusBadge" class="badge status-warning">Certificate ID required</div>
+
+    <a id="ctaButton" class="button-link" href="#" role="button">
+      Course Certificate
+    </a>
+  </main>
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const certificateId = params.get('q');
+      const statusBadge = document.getElementById('statusBadge');
+      const message = document.getElementById('message');
+      const ctaButton = document.getElementById('ctaButton');
+
+      if (!certificateId) {
+        message.textContent = 'Certificate ID required. Append ?q=<CERTIFICATE_ID> to verify.';
+        statusBadge.textContent = 'Certificate ID required';
+        statusBadge.classList.add('status-warning');
+        ctaButton.href = '#';
+        ctaButton.setAttribute('aria-disabled', 'true');
+        return;
+      }
+
+      statusBadge.textContent = `Certificate ID: ${certificateId}`;
+      statusBadge.classList.remove('status-warning');
+      statusBadge.classList.add('status-success');
+      message.textContent = 'Redirecting through the verification service.';
+      ctaButton.href = `/.netlify/functions/verify?id=${encodeURIComponent(certificateId)}`;
+    })();
+  </script>
+</body>
+
+</html>
+

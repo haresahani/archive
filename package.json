@@ -1,0 +1,12 @@
+{
+  "name": "archive-nptel-in",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "netlify:dev": "netlify dev"
+  },
+  "dependencies": {
+    "mongodb": "^6.6.0"
+  }
+}
+

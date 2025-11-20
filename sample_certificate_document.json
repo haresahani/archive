@@ -1,0 +1,10 @@
+{
+  "_id": "NPTEL24HS160S105560029104175140",
+  "courseCode": "noc25-hs160",
+  "semester": "SEM5",
+  "storageUrl": "https://res.cloudinary.com/<cloud-name>/raw/upload/v123456789/NPTEL24HS160S105560029104175140.pdf",
+  "createdAt": {
+    "$date": "2024-10-01T00:00:00.000Z"
+  }
+}
+
