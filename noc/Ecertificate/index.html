@@ -108,10 +108,25 @@
 
 <body>
   <main class="wrapper">
-    <a class="button-link" href="#" role="button">
+    <a id="ctaButton" class="button-link" href="#" role="button">
       Course Certificate
     </a>
   </main>
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const certificateId = params.get('q');
+      const ctaButton = document.getElementById('ctaButton');
+
+      if (certificateId) {
+        ctaButton.href = `/.netlify/functions/verify?id=${encodeURIComponent(certificateId)}`;
+      } else {
+        ctaButton.href = '#';
+        ctaButton.setAttribute('aria-disabled', 'true');
+      }
+    })();
+  </script>
 </body>
 
 </html>
