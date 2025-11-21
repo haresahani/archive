@@ -25,7 +25,10 @@
     .wrapper {
       width: min(420px, 90vw);
       margin: 0 auto;
-      padding-top: 15vh;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
     }
 
@@ -105,43 +108,10 @@
 
 <body>
   <main class="wrapper">
-    <div class="brand">archive-nptel-in</div>
-    <h1>Course Certificate</h1>
-    <p id="message">
-      Provide a valid certificate ID query parameter to verify a course certificate.
-    </p>
-
-    <div id="statusBadge" class="badge status-warning">Certificate ID required</div>
-
-    <a id="ctaButton" class="button-link" href="#" role="button">
+    <a class="button-link" href="#" role="button">
       Course Certificate
     </a>
   </main>
-
-  <script>
-    (function () {
-      const params = new URLSearchParams(window.location.search);
-      const certificateId = params.get('q');
-      const statusBadge = document.getElementById('statusBadge');
-      const message = document.getElementById('message');
-      const ctaButton = document.getElementById('ctaButton');
-
-      if (!certificateId) {
-        message.textContent = 'Certificate ID required. Append ?q=<CERTIFICATE_ID> to verify.';
-        statusBadge.textContent = 'Certificate ID required';
-        statusBadge.classList.add('status-warning');
-        ctaButton.href = '#';
-        ctaButton.setAttribute('aria-disabled', 'true');
-        return;
-      }
-
-      statusBadge.textContent = `Certificate ID: ${certificateId}`;
-      statusBadge.classList.remove('status-warning');
-      statusBadge.classList.add('status-success');
-      message.textContent = 'Redirecting through the verification service.';
-      ctaButton.href = `/.netlify/functions/verify?id=${encodeURIComponent(certificateId)}`;
-    })();
-  </script>
 </body>
 
 </html>
